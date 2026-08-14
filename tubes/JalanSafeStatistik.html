@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JalanSafe - Statistik Jalan</title>
+    
+    <!-- UTILS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; color: #1f2937; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .card-stat { transition: transform 0.2s; }
+        .card-stat:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- HEADER -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <a href="JalanSafePublik.html" class="p-2 rounded-full hover:bg-gray-100 text-gray-600 transition-colors">
+                    <ion-icon name="arrow-back" class="text-2xl"></ion-icon>
+                </a>
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">Statistik Jalan</h1>
+                    <p class="text-[10px] text-gray-500 font-bold tracking-widest text-blue-600">JALANSAFE DATABASE</p>
+                </div>
+            </div>
+            <div class="text-xs text-green-600 font-bold bg-green-50 px-3 py-1 rounded-full border border-green-100 flex items-center gap-1">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Live
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="flex-1 max-w-4xl mx-auto w-full p-4 space-y-6">
+        
+        <!-- 1. SUMMARY CARDS -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- Total Laporan -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 card-stat">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                        <ion-icon name="document-text"></ion-icon>
+                    </div>
+                    <span class="text-xs font-bold text-gray-400 uppercase">Laporan</span>
+                </div>
+                <div class="text-2xl font-black text-gray-800">1,240</div>
+                <div class="text-xs text-blue-600 font-bold flex items-center mt-1">
+                    <ion-icon name="add-circle" class="mr-1"></ion-icon> +12 Hari Ini
+                </div>
+            </div>
+
+            <!-- Perbaikan Selesai -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 card-stat">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="p-2 bg-green-50 text-green-600 rounded-lg">
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                    </div>
+                    <span class="text-xs font-bold text-gray-400 uppercase">Diperbaiki</span>
+                </div>
+                <div class="text-2xl font-black text-gray-800">980</div>
+                <div class="text-[10px] text-gray-400 mt-1">Lubang ditambal</div>
+            </div>
+
+            <!-- Kondisi Kritis -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 card-stat border-l-4 border-l-red-500">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="p-2 bg-red-50 text-red-600 rounded-lg">
+                        <ion-icon name="alert-circle"></ion-icon>
+                    </div>
+                    <span class="text-xs font-bold text-gray-400 uppercase">Kritis</span>
+                </div>
+                <div class="text-2xl font-black text-red-600">45</div>
+                <div class="text-[10px] text-red-400 font-bold mt-1">Butuh tindakan segera</div>
+            </div>
+
+            <!-- Rata-rata Respon -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 card-stat">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="p-2 bg-purple-50 text-purple-600 rounded-lg">
+                        <ion-icon name="time"></ion-icon>
+                    </div>
+                    <span class="text-xs font-bold text-gray-400 uppercase">Respon Tim</span>
+                </div>
+                <div class="text-2xl font-black text-gray-800">24j</div>
+                <div class="text-xs text-green-600 font-bold flex items-center mt-1">
+                    <ion-icon name="arrow-down" class="mr-1"></ion-icon> Lebih Cepat
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. CHARTS AREA -->
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Line Chart: Tren Kerusakan -->
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-gray-800 flex items-center gap-2">
+                        <ion-icon name="analytics" class="text-blue-500"></ion-icon> Tren Kerusakan
+                    </h3>
+                    <select class="text-xs border-none bg-gray-50 rounded px-2 py-1 text-gray-500 outline-none cursor-pointer hover:bg-gray-100">
+                        <option>7 Hari Terakhir</option>
+                        <option>Bulan Ini</option>
+                        <option>Tahun Ini</option>
+                    </select>
+                </div>
+                <div id="chart-laporan"></div>
+            </div>
+
+            <!-- Donut Chart: Jenis Kerusakan Jalan -->
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <ion-icon name="pie-chart" class="text-yellow-500"></ion-icon> Jenis Kerusakan
+                </h3>
+                <div id="chart-kategori" class="flex justify-center"></div>
+            </div>
+        </div>
+
+        <!-- 3. TOP WILAYAH (JALAN RUSAK) -->
+        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+                <h3 class="font-bold text-gray-800 flex items-center gap-2">
+                    <ion-icon name="map" class="text-red-500"></ion-icon> Wilayah Paling Rawan
+                </h3>
+                <span class="text-xs text-gray-400">Berdasarkan jumlah laporan</span>
+            </div>
+            <div class="p-0">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-gray-50 text-gray-500 text-xs uppercase">
+                        <tr>
+                            <th class="px-6 py-3 font-medium">Kecamatan</th>
+                            <th class="px-6 py-3 font-medium text-center">Jalan Rusak</th>
+                            <th class="px-6 py-3 font-medium text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 font-bold text-gray-800">Bojongsoang</td>
+                            <td class="px-6 py-4 text-red-600 font-bold text-center">342</td>
+                            <td class="px-6 py-4 text-center"><span class="bg-red-100 text-red-700 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Prioritas</span></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 font-bold text-gray-800">Dayeuhkolot</td>
+                            <td class="px-6 py-4 text-orange-500 font-bold text-center">215</td>
+                            <td class="px-6 py-4 text-center"><span class="bg-orange-100 text-orange-700 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Waspada</span></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 font-bold text-gray-800">Buahbatu</td>
+                            <td class="px-6 py-4 text-blue-600 font-bold text-center">89</td>
+                            <td class="px-6 py-4 text-center"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Pantau</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-gray-200 mt-8 py-6 text-center text-xs text-gray-400 font-mono">
+        &copy; 2025 JalanSafe Infrastructure Monitor
+    </footer>
+
+    <!-- JAVASCRIPT FOR CHARTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Chart Area (Tren Laporan)
+            const optionsArea = {
+                chart: { type: 'area', height: 280, toolbar: { show: false }, fontFamily: 'Inter' },
+                series: [{ name: 'Laporan Masuk', data: [30, 45, 35, 50, 49, 75, 70, 91, 125] }],
+                stroke: { curve: 'smooth', width: 3 },
+                colors: ['#ef4444'], // Warna Merah untuk urgensi
+                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.6, opacityTo: 0.1, stops: [0, 100], colorStops: [] } },
+                dataLabels: { enabled: false },
+                xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep'], axisBorder: {show: false}, axisTicks: {show: false}, labels: {style: {colors: '#9ca3af', fontSize: '10px'}} },
+                yaxis: { labels: {style: {colors: '#9ca3af', fontSize: '10px'}} },
+                grid: { borderColor: '#f3f4f6', strokeDashArray: 4 },
+                tooltip: { theme: 'light', y: { formatter: function (val) { return val + " Laporan" } } }
+            };
+            new ApexCharts(document.querySelector("#chart-laporan"), optionsArea).render();
+
+            // 2. Chart Donut (Jenis Kerusakan Jalan)
+            const optionsDonut = {
+                chart: { type: 'donut', height: 280, fontFamily: 'Inter' },
+                // Data khusus kerusakan jalan
+                series: [45, 25, 15, 10, 5], 
+                labels: ['Lubang Kecil', 'Lubang Besar', 'Jalan Amblas', 'Retak Buaya', 'Aspal Mengelupas'],
+                colors: ['#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#64748b'], // Biru, Kuning, Merah, Ungu, Abu
+                plotOptions: { 
+                    pie: { 
+                        donut: { 
+                            size: '70%', 
+                            labels: { 
+                                show: true, 
+                                name: { fontSize: '12px', color: '#6b7280' },
+                                value: { fontSize: '24px', fontWeight: 800, color: '#1f2937' },
+                                total: { show: true, label: 'Total Isu', fontSize: '12px', fontWeight: 600, color: '#9ca3af' } 
+                            } 
+                        } 
+                    } 
+                },
+                legend: { position: 'bottom', markers: { radius: 12 }, fontSize: '12px', itemMargin: { horizontal: 10, vertical: 5 } },
+                dataLabels: { enabled: false }
+            };
+            new ApexCharts(document.querySelector("#chart-kategori"), optionsDonut).render();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JalanSafe - Lapor Jalan Rusak</title>
+    
+    <!-- UTILS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; color: #1e293b; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Custom Checkbox Style */
+        .cat-radio:checked + div { background-color: #fee2e2; border-color: #ef4444; color: #b91c1c; box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.1); }
+        .cat-radio:checked + div ion-icon { color: #dc2626; }
+        
+        /* Icon Colors */
+        .cat-icon { color: #94a3b8; transition: color 0.2s; }
+        .group:hover .cat-icon { color: #ef4444; }
+
+        /* Animation Classes */
+        .slide-up { animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .scale-in { animation: scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        @keyframes scaleIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans">
+
+    <!-- WRAPPER UTAMA -->
+    <div class="max-w-lg mx-auto bg-white min-h-screen shadow-2xl relative overflow-hidden">
+        
+        <!-- ===========================
+             VIEW 1: FORMULIR LAPORAN
+             =========================== -->
+        <div id="form-view" class="h-full flex flex-col transition-opacity duration-300">
+            
+            <!-- Header -->
+            <header class="bg-white p-4 sticky top-0 z-40 border-b border-gray-100 flex items-center gap-4 shadow-sm">
+                <a href="JalanSafePublik.html" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-600 transition-colors">
+                    <ion-icon name="arrow-back" class="text-xl"></ion-icon>
+                </a>
+                <div>
+                    <h1 class="text-lg font-bold text-gray-800 leading-tight">Lapor Jalan Rusak</h1>
+                    <p class="text-[10px] text-gray-500 font-medium">Isi data dengan lengkap & benar</p>
+                </div>
+            </header>
+
+            <!-- Konten -->
+            <main class="p-5 space-y-8 flex-1 overflow-y-auto pb-32">
+                
+                <!-- 1. Foto -->
+                <section class="space-y-3">
+                    <label class="text-sm font-bold text-gray-700 block">1. Foto Kondisi Jalan <span class="text-red-500">*</span></label>
+                    <div class="relative w-full aspect-[4/3] bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300 hover:border-red-400 transition-colors flex flex-col items-center justify-center group overflow-hidden cursor-pointer" id="photo-container">
+                        <input type="file" id="file-input" accept="image/*" class="absolute inset-0 opacity-0 z-10 cursor-pointer" onchange="previewImage(this)">
+                        
+                        <!-- Placeholder -->
+                        <div id="upload-placeholder" class="text-center p-6 transition-opacity duration-300">
+                            <div class="w-14 h-14 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                                <ion-icon name="camera" class="text-2xl"></ion-icon>
+                            </div>
+                            <p class="text-sm font-bold text-gray-600">Ambil Foto Jalan</p>
+                            <p class="text-[10px] text-gray-400 mt-1">Pastikan lubang/kerusakan terlihat jelas</p>
+                        </div>
+
+                        <!-- Preview -->
+                        <img id="image-preview" class="absolute inset-0 w-full h-full object-cover hidden" />
+                        <button id="btn-remove-img" onclick="removeImage(event)" class="absolute top-2 right-2 bg-black/50 text-white p-1.5 rounded-full hover:bg-red-500 hidden z-20 transition-colors">
+                            <ion-icon name="close"></ion-icon>
+                        </button>
+                    </div>
+                    <div class="flex gap-3 bg-blue-50 p-3 rounded-xl border border-blue-100 items-center">
+                        <ion-icon name="scan-circle" class="text-blue-500 text-2xl"></ion-icon>
+                        <p class="text-xs text-blue-700 leading-snug">Sistem <b>AI</b> akan otomatis mengukur dimensi lubang dari foto Anda.</p>
+                    </div>
+                </section>
+
+                <!-- 2. Lokasi -->
+                <section class="space-y-3">
+                    <label class="text-sm font-bold text-gray-700 block">2. Titik Lokasi <span class="text-red-500">*</span></label>
+                    <input type="hidden" id="location-locked" value="false">
+                    
+                    <button type="button" onclick="detectLocation()" class="w-full py-3 border border-gray-300 rounded-xl flex items-center justify-center gap-2 text-gray-600 font-bold hover:bg-gray-50 hover:border-gray-400 transition-all active:scale-95" id="btn-location">
+                        <ion-icon name="location" class="text-red-500 text-lg"></ion-icon>
+                        <span>Deteksi Lokasi Saya</span>
+                    </button>
+
+                    <div id="map-preview-container" class="hidden rounded-xl overflow-hidden border border-gray-200 h-32 relative">
+                        <img src="https://placehold.co/600x200/e2e8f0/94a3b8?text=Peta+Jalan" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-3 h-3 bg-red-600 rounded-full animate-ping absolute"></div>
+                            <ion-icon name="location" class="text-3xl text-red-600 drop-shadow-md relative z-10"></ion-icon>
+                        </div>
+                    </div>
+
+                    <textarea id="address-input" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none text-sm transition-all" rows="2" placeholder="Detail lokasi (Cth: KM 12 arah pusat kota, lajur kiri)..."></textarea>
+                </section>
+
+                <!-- 3. Jenis Kerusakan -->
+                <section class="space-y-3">
+                    <label class="text-sm font-bold text-gray-700 block">3. Jenis Kerusakan</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <!-- Items (sama seperti sebelumnya) -->
+                        <label class="cursor-pointer relative group"><input type="radio" name="kategori" class="cat-radio sr-only" value="Ringan" checked><div class="p-2 rounded-xl border border-gray-200 bg-white text-center group-hover:border-red-300 transition-all h-28 flex flex-col items-center justify-center gap-1"><div class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mb-1"><ion-icon name="ellipse-outline" class="text-2xl cat-icon"></ion-icon></div><span class="text-xs font-bold text-gray-700 leading-tight">Lubang<br>Kecil</span></div></label>
+                        <label class="cursor-pointer relative group"><input type="radio" name="kategori" class="cat-radio sr-only" value="Sedang"><div class="p-2 rounded-xl border border-gray-200 bg-white text-center group-hover:border-red-300 transition-all h-28 flex flex-col items-center justify-center gap-1"><div class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mb-1"><ion-icon name="ellipse" class="text-2xl cat-icon"></ion-icon></div><span class="text-xs font-bold text-gray-700 leading-tight">Lubang<br>Besar</span></div></label>
+                        <label class="cursor-pointer relative group"><input type="radio" name="kategori" class="cat-radio sr-only" value="Berat"><div class="p-2 rounded-xl border border-gray-200 bg-white text-center group-hover:border-red-300 transition-all h-28 flex flex-col items-center justify-center gap-1"><div class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mb-1"><ion-icon name="alert-circle" class="text-2xl cat-icon"></ion-icon></div><span class="text-xs font-bold text-gray-700 leading-tight">Jalan<br>Amblas</span></div></label>
+                        <label class="cursor-pointer relative group"><input type="radio" name="kategori" class="cat-radio sr-only" value="Retak"><div class="p-2 rounded-xl border border-gray-200 bg-white text-center group-hover:border-red-300 transition-all h-28 flex flex-col items-center justify-center gap-1"><div class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mb-1"><ion-icon name="analytics-outline" class="text-2xl cat-icon rotate-45"></ion-icon></div><span class="text-xs font-bold text-gray-700 leading-tight">Retak<br>Buaya</span></div></label>
+                        <label class="cursor-pointer relative group"><input type="radio" name="kategori" class="cat-radio sr-only" value="Gelombang"><div class="p-2 rounded-xl border border-gray-200 bg-white text-center group-hover:border-red-300 transition-all h-28 flex flex-col items-center justify-center gap-1"><div class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mb-1"><ion-icon name="pulse-outline" class="text-2xl cat-icon"></ion-icon></div><span class="text-xs font-bold text-gray-700 leading-tight">Jalan<br>Gelombang</span></div></label>
+                        <label class="cursor-pointer relative group"><input type="radio" name="kategori" class="cat-radio sr-only" value="Aspal"><div class="p-2 rounded-xl border border-gray-200 bg-white text-center group-hover:border-red-300 transition-all h-28 flex flex-col items-center justify-center gap-1"><div class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mb-1"><ion-icon name="layers-outline" class="text-2xl cat-icon"></ion-icon></div><span class="text-xs font-bold text-gray-700 leading-tight">Aspal<br>Kelupas</span></div></label>
+                    </div>
+                </section>
+
+                <!-- 4. Catatan -->
+                <section class="space-y-3">
+                    <label class="text-sm font-bold text-gray-700 block">4. Catatan (Opsional)</label>
+                    <textarea class="w-full p-4 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none text-sm min-h-[80px]" placeholder="Misal: Sudah menyebabkan kecelakaan..."></textarea>
+                </section>
+
+            </main>
+
+            <!-- Footer -->
+            <div class="fixed bottom-0 left-0 right-0 w-full max-w-lg mx-auto bg-white p-4 border-t border-gray-200 z-50">
+                <button onclick="submitReport()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-red-500/30 transition-all active:scale-95 flex items-center justify-center gap-2">
+                    <ion-icon name="paper-plane"></ion-icon> Kirim Laporan
+                </button>
+            </div>
+        </div>
+
+        <!-- ===========================
+             VIEW 2: LOADING OVERLAY
+             =========================== -->
+        <div id="loading-view" class="hidden fixed inset-0 z-50 bg-white/90 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center">
+            <div class="w-16 h-16 border-4 border-red-200 border-t-red-600 rounded-full animate-spin mb-4"></div>
+            <h2 class="text-lg font-bold text-gray-800">Mengirim Laporan...</h2>
+            <p class="text-sm text-gray-500 mt-2" id="loading-text">Mengunggah foto bukti...</p>
+        </div>
+
+        <!-- ===========================
+             VIEW 3: SUKSES (Laporan Terkirim)
+             =========================== -->
+        <div id="success-view" class="hidden h-screen flex flex-col items-center justify-center p-6 bg-white relative overflow-hidden">
+            <!-- Confetti Background (Static) -->
+            <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+                <div class="absolute top-10 left-10 w-4 h-4 bg-red-400 rounded-full opacity-50 animate-bounce"></div>
+                <div class="absolute top-20 right-20 w-3 h-3 bg-yellow-400 rounded-full opacity-50 animate-bounce delay-75"></div>
+                <div class="absolute bottom-32 left-1/4 w-5 h-5 bg-blue-400 rounded-full opacity-50 animate-bounce delay-100"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="scale-in text-center w-full max-w-sm z-10">
+                <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner ring-8 ring-green-50">
+                    <ion-icon name="checkmark-circle" class="text-6xl text-green-500"></ion-icon>
+                </div>
+                
+                <h1 class="text-2xl font-black text-gray-800 mb-2">Laporan Terkirim!</h1>
+                <p class="text-sm text-gray-500 mb-6">Terima kasih, laporan Anda telah diterima sistem dan sedang dalam antrian verifikasi.</p>
+                
+                <!-- Ticket Card -->
+                <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4 mb-8 text-left shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-green-500"></div>
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">ID Laporan</span>
+                        <span class="text-xs font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded">Baru</span>
+                    </div>
+                    <div class="font-mono text-xl font-bold text-gray-800 tracking-wide mb-1" id="ticket-id">#REQ-88219</div>
+                    <div class="text-xs text-gray-500 flex items-center gap-1">
+                        <ion-icon name="calendar-outline"></ion-icon> <span id="ticket-date">...</span>
+                    </div>
+                </div>
+
+                <div class="space-y-3 w-full">
+                    <button onclick="window.location.href='JalanSafePublik.html'" class="w-full bg-gray-900 hover:bg-black text-white font-bold py-3.5 rounded-xl shadow-lg transition-all active:scale-95">
+                        Kembali ke Beranda
+                    </button>
+                    <button onclick="window.location.href='JalanSafeProfil.html'" class="w-full bg-white border border-gray-200 text-gray-700 font-bold py-3.5 rounded-xl hover:bg-gray-50 transition-all active:scale-95">
+                        Lihat Riwayat Laporan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        function previewImage(input) {
+            const preview = document.getElementById('image-preview');
+            const placeholder = document.getElementById('upload-placeholder');
+            const btnRemove = document.getElementById('btn-remove-img');
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    placeholder.classList.add('opacity-0');
+                    btnRemove.classList.remove('hidden');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function removeImage(e) {
+            e.stopPropagation();
+            document.querySelector('#file-input').value = '';
+            document.getElementById('image-preview').classList.add('hidden');
+            document.getElementById('upload-placeholder').classList.remove('opacity-0');
+            document.getElementById('btn-remove-img').classList.add('hidden');
+        }
+
+        function detectLocation() {
+            const btn = document.getElementById('btn-location');
+            const mapPreview = document.getElementById('map-preview-container');
+            const addressInput = document.getElementById('address-input');
+            const lockedInput = document.getElementById('location-locked');
+            
+            btn.innerHTML = '<ion-icon name="refresh" class="animate-spin text-lg"></ion-icon> Mencari Koordinat...';
+            btn.classList.add('bg-gray-50');
+            
+            setTimeout(() => {
+                btn.innerHTML = '<ion-icon name="checkmark-circle" class="text-green-500 text-lg"></ion-icon> Lokasi Terkunci';
+                btn.classList.remove('bg-gray-50', 'text-gray-600', 'border-gray-300');
+                btn.classList.add('border-green-500', 'text-green-600', 'bg-green-50');
+                
+                mapPreview.classList.remove('hidden');
+                mapPreview.classList.add('slide-up');
+                addressInput.value = "Jl. Telekomunikasi No. 1, Bandung (Koordinat: -6.974, 107.630)";
+                lockedInput.value = "true";
+            }, 1500);
+        }
+
+        function submitReport() {
+            // Validasi Sederhana
+            const fileInput = document.getElementById('file-input');
+            const locLocked = document.getElementById('location-locked').value;
+            
+            if (fileInput.files.length === 0) {
+                alert('Mohon lampirkan foto bukti kondisi jalan.');
+                return;
+            }
+            if (locLocked !== "true") {
+                alert('Mohon tekan tombol "Deteksi Lokasi Saya" terlebih dahulu.');
+                return;
+            }
+
+            // Mulai Proses Kirim
+            const formView = document.getElementById('form-view');
+            const loadingView = document.getElementById('loading-view');
+            const successView = document.getElementById('success-view');
+            const loadingText = document.getElementById('loading-text');
+
+            // 1. Show Loading
+            loadingView.classList.remove('hidden');
+            
+            // Simulasi Step AI Analysis
+            setTimeout(() => { loadingText.innerText = "Menganalisis dimensi kerusakan..."; }, 1000);
+            setTimeout(() => { loadingText.innerText = "Mengklasifikasikan tingkat keparahan..."; }, 2500);
+            setTimeout(() => { loadingText.innerText = "Finalisasi data laporan..."; }, 4000);
+
+            // 2. Show Success
+            setTimeout(() => {
+                loadingView.classList.add('hidden');
+                formView.classList.add('hidden'); // Sembunyikan form
+                successView.classList.remove('hidden'); // Munculkan sukses
+                
+                // Set Data Tiket
+                document.getElementById('ticket-id').innerText = "#REQ-" + Math.floor(10000 + Math.random() * 90000);
+                const date = new Date();
+                document.getElementById('ticket-date').innerText = date.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

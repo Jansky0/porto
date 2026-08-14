@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JalanSafe - Profil</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        ::-webkit-scrollbar { width: 0px; background: transparent; } /* Sembunyikan scrollbar agar rapi */
+
+        /* Custom Media Queries untuk Optimisasi Tambahan */
+        @media (min-width: 640px) {
+            /* Tablet & Desktop Kecil */
+            .profile-avatar { width: 10rem; height: 10rem; }
+            .content-scroll { max-height: 500px; }
+        }
+
+        @media (min-width: 1024px) {
+            /* Desktop Besar */
+            .profile-avatar { width: 12rem; height: 12rem; }
+            .content-scroll { max-height: 600px; }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-100 flex justify-center sm:items-center sm:py-6">
+
+    <!-- CONTAINER UTAMA -->
+    <div class="w-full sm:max-w-xl md:max-w-2xl bg-white shadow-2xl min-h-screen sm:min-h-0 sm:h-auto relative sm:rounded-2xl sm:overflow-hidden border-gray-200 sm:border flex flex-col transition-all duration-300">
+        
+        <!-- Header Image -->
+        <div class="h-44 sm:h-52 bg-gradient-to-tr from-blue-700 via-blue-600 to-indigo-500 relative shrink-0">
+            <button onclick="window.location.href='JalanSafePublik.html'" class="absolute top-5 left-5 bg-white/20 hover:bg-white/30 text-white p-2.5 rounded-full transition-colors backdrop-blur-md shadow-lg z-20">
+                <ion-icon name="arrow-back" class="text-xl"></ion-icon>
+            </button>
+            
+            <!-- Hiasan Background -->
+            <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white to-transparent opacity-20"></div>
+            <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl -mr-10 -mt-10"></div>
+        </div>
+
+        <!-- Profile Info (Responsive Padding & Margins) -->
+        <div class="px-6 relative -mt-20 sm:-mt-24 text-center pb-4 shrink-0">
+            <!-- Foto Profil dengan Border Tebal -->
+            <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-full border-[6px] border-white shadow-xl mx-auto bg-gray-200 overflow-hidden relative z-10 group cursor-pointer profile-avatar transition-all duration-300">
+                <img src="https://placehold.co/200x200/2563eb/ffffff?text=BS" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ion-icon name="camera" class="text-white text-3xl"></ion-icon>
+                </div>
+            </div>
+            
+            <h1 class="text-2xl sm:text-3xl font-black text-gray-800 mt-3 tracking-tight">Budi Santoso</h1>
+            <p class="text-sm sm:text-base font-medium text-gray-500 flex items-center justify-center gap-1 mt-1">
+                <ion-icon name="location" class="text-red-400"></ion-icon> Bojongsoang, Bandung
+            </p>
+            
+            <!-- Badges -->
+            <div class="mt-4 flex justify-center gap-3 flex-wrap">
+                <span class="px-4 py-1.5 bg-yellow-50 text-yellow-700 text-xs sm:text-sm font-bold rounded-full border border-yellow-200 shadow-sm flex items-center gap-1 hover:bg-yellow-100 transition-colors cursor-default">
+                    <ion-icon name="ribbon"></ion-icon> Pahlawan Jalan
+                </span>
+                <span class="px-4 py-1.5 bg-blue-50 text-blue-700 text-xs sm:text-sm font-bold rounded-full border border-blue-200 shadow-sm flex items-center gap-1 hover:bg-blue-100 transition-colors cursor-default">
+                    <ion-icon name="flash"></ion-icon> 1200 XP
+                </span>
+            </div>
+        </div>
+
+        <!-- Scrollable Content Area (Responsive Height) -->
+        <div class="overflow-y-auto content-scroll pb-8 flex-1 sm:px-8">
+            
+            <!-- Stats Grid (Responsive Columns) -->
+            <div class="grid grid-cols-3 gap-3 sm:gap-6 px-6 sm:px-0 mt-2">
+                <div class="bg-gray-50 p-4 rounded-2xl text-center border border-gray-100 hover:bg-white hover:shadow-md transition-all cursor-default group">
+                    <div class="text-2xl sm:text-3xl font-black text-gray-800 group-hover:text-blue-600 transition-colors">12</div>
+                    <div class="text-[10px] sm:text-xs uppercase text-gray-400 font-bold tracking-wider">Laporan</div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-2xl text-center border border-green-100 hover:shadow-md transition-all cursor-default group">
+                    <div class="text-2xl sm:text-3xl font-black text-green-600">8</div>
+                    <div class="text-[10px] sm:text-xs uppercase text-green-600/60 font-bold tracking-wider">Diperbaiki</div>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-2xl text-center border border-yellow-100 hover:shadow-md transition-all cursor-default group">
+                    <div class="text-2xl sm:text-3xl font-black text-yellow-600">#4</div>
+                    <div class="text-[10px] sm:text-xs uppercase text-yellow-600/60 font-bold tracking-wider">Rank Kota</div>
+                </div>
+            </div>
+
+            <!-- Riwayat Laporan -->
+            <div class="px-6 sm:px-0 mt-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-sm sm:text-base font-bold text-gray-800 uppercase tracking-wider">Aktivitas Terakhir</h3>
+                    <button class="text-xs sm:text-sm text-blue-600 font-bold hover:underline">Lihat Semua</button>
+                </div>
+                
+                <div class="space-y-4">
+                    <!-- Item 1 -->
+                    <div class="flex gap-4 p-4 rounded-2xl border border-gray-100 shadow-sm bg-white hover:shadow-md transition-all cursor-pointer group hover:-translate-y-1">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gray-200 rounded-xl flex-shrink-0 overflow-hidden relative">
+                            <img src="https://placehold.co/100x100/e2e8f0/94a3b8?text=Jalan" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-bold text-sm sm:text-base text-gray-800 truncate group-hover:text-blue-600 transition-colors">Lubang Besar</h4>
+                                <span class="text-[9px] sm:text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold uppercase">Selesai</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-500 mt-0.5 truncate">Jl. Telekomunikasi No. 1</p>
+                            <p class="text-[10px] sm:text-xs text-gray-400 mt-1 font-mono flex items-center gap-1">
+                                <ion-icon name="time-outline"></ion-icon> 2 Hari yang lalu
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="flex gap-4 p-4 rounded-2xl border border-gray-100 shadow-sm bg-white hover:shadow-md transition-all cursor-pointer group hover:-translate-y-1">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gray-200 rounded-xl flex-shrink-0 overflow-hidden relative">
+                            <img src="https://placehold.co/100x100/fef3c7/d97706?text=Aspal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-bold text-sm sm:text-base text-gray-800 truncate group-hover:text-blue-600 transition-colors">Aspal Mengelupas</h4>
+                                <span class="text-[9px] sm:text-[10px] bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full font-bold uppercase">Proses</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-500 mt-0.5 truncate">Jl. Raya Bojongsoang</p>
+                            <p class="text-[10px] sm:text-xs text-gray-400 mt-1 font-mono flex items-center gap-1">
+                                <ion-icon name="time-outline"></ion-icon> 5 Hari yang lalu
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Menu Akun (Grid on Tablet) -->
+            <div class="px-6 sm:px-0 mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button class="w-full py-3 px-4 flex items-center justify-between bg-white border border-gray-100 rounded-xl hover:bg-gray-50 hover:shadow-sm transition-all text-sm font-bold text-gray-700 group">
+                    <span class="flex items-center gap-3"><ion-icon name="settings-outline" class="text-lg text-gray-400 group-hover:text-blue-500 transition-colors"></ion-icon> Pengaturan Akun</span>
+                    <ion-icon name="chevron-forward" class="text-gray-300"></ion-icon>
+                </button>
+                <button class="w-full py-3 px-4 flex items-center justify-between bg-white border border-gray-100 rounded-xl hover:bg-gray-50 hover:shadow-sm transition-all text-sm font-bold text-gray-700 group">
+                    <span class="flex items-center gap-3"><ion-icon name="help-circle-outline" class="text-lg text-gray-400 group-hover:text-blue-500 transition-colors"></ion-icon> Bantuan & Support</span>
+                    <ion-icon name="chevron-forward" class="text-gray-300"></ion-icon>
+                </button>
+                <button onclick="alert('Anda telah keluar.'); window.location.href='JalanSafePublik.html'" class="w-full py-3 px-4 mt-2 sm:mt-0 sm:col-span-2 bg-red-50 text-red-600 font-bold rounded-xl hover:bg-red-100 hover:shadow-md transition-all flex items-center justify-center gap-2 border border-red-100">
+                    <ion-icon name="log-out-outline"></ion-icon> Keluar Akun
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
