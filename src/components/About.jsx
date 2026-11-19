@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { GraduationCap, Code2, Layers } from 'lucide-react';
+import { GraduationCap, BookOpen, Award, FileText, Download } from 'lucide-react';
 
 /* ──────────────────────────────────────────
    ABOUT — Split layout matching Reference 2
@@ -132,55 +132,65 @@ const About = () => {
               </div>
             </div>
 
-            {/* Experience / Focus */}
-            <h3
-              className="font-body text-xl sm:text-2xl font-bold mb-4 text-white"
-            >
-              Experience & Focus
-            </h3>
+            {/* Experience & Achievements */}
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-body text-xl sm:text-2xl font-bold text-white">
+                Experience & Achievements
+              </h3>
+              <a
+                href="/Andika_Ramadhan_Resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white text-white hover:text-[var(--color-royal)] text-xs font-bold font-body transition-all duration-300 border border-white/20 shadow-md hover:scale-105"
+              >
+                <FileText className="w-4 h-4" />
+                Download CV (PDF)
+              </a>
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Card 1: Independent Software Developer */}
+              {/* Card 1: Teaching Assistant */}
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-white text-[var(--color-royal)] font-bold shadow-lg"
                 >
-                  <Code2 className="w-6 h-6" />
+                  <BookOpen className="w-6 h-6" />
                 </div>
                 <div>
                   <p className="font-body text-xs font-medium text-[var(--color-royal-100)]">
-                    2024 - Sekarang
+                    Sep 2026 - Des 2026
                   </p>
                   <p className="font-body text-sm font-bold text-white">
-                    Independent Software Developer
+                    Asisten Praktikum (Asprak)
                   </p>
                   <p className="font-body text-xs uppercase tracking-wide font-semibold text-white/80">
-                    FULL-STACK & APPLIED AI
+                    ALGORITMA PEMROGRAMAN & DESAIN UI
                   </p>
                   <p className="font-body text-xs mt-1 text-white/70">
-                    Mengeksplorasi dan membangun modern web (React 18, Vite, Next.js), PWA, sistem desktop hybrid (Electron), dan solusi Local-First RAG.
+                    Membimbing praktikum mingguan mahasiswa SIKC Telkom University dalam logika pemrograman, wireframing, dan usability heuristics.
                   </p>
                 </div>
               </div>
 
-              {/* Card 2: Applied Systems & Academic Projects */}
+              {/* Card 2: UI/UX Competition Finalist */}
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-white text-[var(--color-royal)] font-bold shadow-lg"
                 >
-                  <Layers className="w-6 h-6" />
+                  <Award className="w-6 h-6" />
                 </div>
                 <div>
                   <p className="font-body text-xs font-medium text-[var(--color-royal-100)]">
-                    2024 - Sekarang
+                    2026
                   </p>
                   <p className="font-body text-sm font-bold text-white">
-                    Applied Academic Projects
+                    Finalis Kompetisi UI/UX Nasional
                   </p>
                   <p className="font-body text-xs uppercase tracking-wide font-semibold text-white/80">
-                    SMART CITY & CIVIC SOLUTIONS
+                    VERENITYBERAKSI — IDEATION & UI DESIGNER
                   </p>
                   <p className="font-body text-xs mt-1 text-white/70">
-                    Merancang solusi praktis terapan seperti sistem antrean layanan kesehatan, arsitektur basis data terstruktur, dan pemodelan proses bisnis kota cerdas.
+                    Merumuskan analisis solusi digital dari studi kasus lomba, perancangan purwarupa interaktif Figma, dan konsistensi design system.
                   </p>
                 </div>
               </div>
