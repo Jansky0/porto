@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { GraduationCap, Briefcase, FlaskConical, Lightbulb } from 'lucide-react';
+import { GraduationCap, Code2, Layers } from 'lucide-react';
 
 /* ──────────────────────────────────────────
    ABOUT — Split layout matching Reference 2
@@ -95,13 +95,13 @@ const About = () => {
 
             {/* Bio */}
             <p className="font-body text-sm sm:text-base leading-relaxed mb-2 text-white/80">
-              I'm Andika Ramadhan Yusuf Akbar, a passionate tech enthusiast who loves building things 
-              that are not only functional but also beautifully designed. I thrive at the intersection 
-              of AI research, web development, and user experience design.
+              I'm Andika Ramadhan Yusuf Akbar, a tech enthusiast and student of D4 Sistem Informasi Kota Cerdas 
+              at Telkom University. I love building practical digital solutions across full-stack web development, 
+              hybrid desktop systems, and emerging AI technologies.
             </p>
             <p className="font-body text-sm sm:text-base leading-relaxed mb-8 text-white/80">
-              I'm always experimenting with new technologies and looking for ways to push creative 
-              boundaries. Let's collaborate and create something remarkable together.
+              I thrive on turning real-world civic and educational challenges into clean, accessible, and high-impact digital experiences. 
+              Let's connect and create something remarkable together.
             </p>
 
             {/* Education */}
@@ -118,112 +118,69 @@ const About = () => {
               </div>
               <div>
                 <p className="font-body text-xs font-medium text-[var(--color-royal-100)]">
-                  2024 - Now
+                  2024 - Sekarang
                 </p>
                 <p className="font-body text-sm sm:text-base font-bold uppercase tracking-wide text-white">
-                  Telkom University
+                  Telkom University Bandung
                 </p>
-                <p className="font-body text-sm text-white/80">
-                  Informatics / Computer Science
+                <p className="font-body text-sm font-semibold text-white/90">
+                  D4 Sistem Informasi Kota Cerdas (Smart City Information System)
+                </p>
+                <p className="font-body text-xs text-white/60">
+                  Fakultas Ilmu Terapan
                 </p>
               </div>
             </div>
 
-            {/* Experience / Projects */}
+            {/* Experience / Focus */}
             <h3
               className="font-body text-xl sm:text-2xl font-bold mb-4 text-white"
             >
-              Experience
+              Experience & Focus
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Experience Card 1 */}
-              <div className="flex items-start gap-4">
+              {/* Card 1: Independent Software Developer */}
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-white text-[var(--color-royal)] font-bold shadow-lg"
                 >
-                  <FlaskConical className="w-6 h-6" />
+                  <Code2 className="w-6 h-6" />
                 </div>
                 <div>
                   <p className="font-body text-xs font-medium text-[var(--color-royal-100)]">
-                    2025 - Now
+                    2024 - Sekarang
                   </p>
                   <p className="font-body text-sm font-bold text-white">
-                    AI Research Lab
+                    Independent Software Developer
                   </p>
                   <p className="font-body text-xs uppercase tracking-wide font-semibold text-white/80">
-                    AI & TECH RESEARCHER
+                    FULL-STACK & APPLIED AI
                   </p>
-                  <p className="font-body text-xs mt-1 text-white/60">
-                    Exploring and documenting emerging AI tools, conversational models, and practical implementations.
+                  <p className="font-body text-xs mt-1 text-white/70">
+                    Mengeksplorasi dan membangun modern web (React 18, Vite, Next.js), PWA, sistem desktop hybrid (Electron), dan solusi Local-First RAG.
                   </p>
                 </div>
               </div>
 
-              {/* Experience Card 2 */}
-              <div className="flex items-start gap-4">
+              {/* Card 2: Applied Systems & Academic Projects */}
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-white text-[var(--color-royal)] font-bold shadow-lg"
                 >
-                  <Lightbulb className="w-6 h-6" />
+                  <Layers className="w-6 h-6" />
                 </div>
                 <div>
                   <p className="font-body text-xs font-medium text-[var(--color-royal-100)]">
-                    2025 - Now
+                    2024 - Sekarang
                   </p>
                   <p className="font-body text-sm font-bold text-white">
-                    Google Student Ambassador
+                    Applied Academic Projects
                   </p>
                   <p className="font-body text-xs uppercase tracking-wide font-semibold text-white/80">
-                    TECH COMMUNITY LEADER
+                    SMART CITY & CIVIC SOLUTIONS
                   </p>
-                  <p className="font-body text-xs mt-1 text-white/60">
-                    Contributing to the university tech community via discussions, workshops, and knowledge sharing.
-                  </p>
-                </div>
-              </div>
-
-              {/* Experience Card 3 */}
-              <div className="flex items-start gap-4">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-white text-[var(--color-royal)] font-bold shadow-lg"
-                >
-                  <Briefcase className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="font-body text-xs font-medium text-[var(--color-royal-100)]">
-                    2025 - 2026
-                  </p>
-                  <p className="font-body text-sm font-bold text-white">
-                    Pilah.in & NusaChain
-                  </p>
-                  <p className="font-body text-xs uppercase tracking-wide font-semibold text-white/80">
-                    LEAD PRODUCT & FRONTEND ARCHITECT
-                  </p>
-                  <p className="font-body text-xs mt-1 text-white/60">
-                    Engineered circular economy PWAs and maritime logistics intelligence blueprints with real-world impact.
-                  </p>
-                </div>
-              </div>
-
-              {/* Experience Card 4 */}
-              <div className="flex items-start gap-4">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-white text-[var(--color-royal)] font-bold shadow-lg"
-                >
-                  <Briefcase className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="font-body text-xs font-medium text-[var(--color-royal-100)]">
-                    2025 - 2026
-                  </p>
-                  <p className="font-body text-sm font-bold text-white">
-                    JalanSafe & Antrean Puskesmas
-                  </p>
-                  <p className="font-body text-xs uppercase tracking-wide font-semibold text-white/80">
-                    FULL-STACK & SYSTEM ENGINEER
-                  </p>
-                  <p className="font-body text-xs mt-1 text-white/60">
-                    Built civic infrastructure reporting platforms and hybrid offline-first healthcare queuing systems.
+                  <p className="font-body text-xs mt-1 text-white/70">
+                    Merancang solusi praktis terapan seperti sistem antrean layanan kesehatan, arsitektur basis data terstruktur, dan pemodelan proses bisnis kota cerdas.
                   </p>
                 </div>
               </div>
