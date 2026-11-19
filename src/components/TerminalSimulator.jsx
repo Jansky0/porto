@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 const blocks = [
   { cmd: "System.init({ setup: 'IdeaPad Gaming 3' });", output: "// ...OK" },
-  { cmd: "Skills.load(['React', 'PHP', 'Tailwindv4', 'UX']);", output: "// ...LOADED" },
-  { cmd: "Mission.state = 'Turning curiosity into code.';", output: "// ...SET" },
+  { cmd: "Skills.load(['React18', 'Next.js', 'Python', 'LocalRAG', 'UX']);", output: "// ...LOADED" },
+  { cmd: "Mission.state = 'Turning curiosity into high-impact code.';", output: "// ...SET" },
+  { cmd: "Projects.scan();", output: "// ...6 Rare Full-Stack & AI Projects Live" },
   { cmd: "System.run('Risk of Rain 2');", output: "// ...JUST KIDDING! -> npm run dev" }
 ];
 

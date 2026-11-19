@@ -183,7 +183,7 @@ const About = () => {
               </div>
 
               {/* Experience Card 3 */}
-              <div className="flex items-start gap-4 sm:col-span-2 lg:col-span-1">
+              <div className="flex items-start gap-4">
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-white text-[var(--color-royal)] font-bold shadow-lg"
                 >
@@ -191,16 +191,39 @@ const About = () => {
                 </div>
                 <div>
                   <p className="font-body text-xs font-medium text-[var(--color-royal-100)]">
-                    2025
+                    2025 - 2026
                   </p>
                   <p className="font-body text-sm font-bold text-white">
-                    JalanSafe
+                    Pilah.in & NusaChain
                   </p>
                   <p className="font-body text-xs uppercase tracking-wide font-semibold text-white/80">
-                    WEB DEVELOPER & UX DESIGNER
+                    LEAD PRODUCT & FRONTEND ARCHITECT
                   </p>
                   <p className="font-body text-xs mt-1 text-white/60">
-                    Built a road damage reporting web app to improve citizen-authority communication.
+                    Engineered circular economy PWAs and maritime logistics intelligence blueprints with real-world impact.
+                  </p>
+                </div>
+              </div>
+
+              {/* Experience Card 4 */}
+              <div className="flex items-start gap-4">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-white text-[var(--color-royal)] font-bold shadow-lg"
+                >
+                  <Briefcase className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="font-body text-xs font-medium text-[var(--color-royal-100)]">
+                    2025 - 2026
+                  </p>
+                  <p className="font-body text-sm font-bold text-white">
+                    JalanSafe & Antrean Puskesmas
+                  </p>
+                  <p className="font-body text-xs uppercase tracking-wide font-semibold text-white/80">
+                    FULL-STACK & SYSTEM ENGINEER
+                  </p>
+                  <p className="font-body text-xs mt-1 text-white/60">
+                    Built civic infrastructure reporting platforms and hybrid offline-first healthcare queuing systems.
                   </p>
                 </div>
               </div>

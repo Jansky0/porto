@@ -1,19 +1,184 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ExternalLink, Code, X, ArrowUpRight, Layers, Wrench, FileText, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { 
+  ExternalLink, 
+  Code, 
+  X, 
+  ArrowUpRight, 
+  Layers, 
+  Wrench, 
+  Sparkles, 
+  ChevronLeft, 
+  ChevronRight, 
+  LayoutGrid, 
+  Disc3 
+} from 'lucide-react';
+
+// JalanSafe Images
 import imgJalanSafe from '../assets/images/jalansafe.png';
 import imgJalanSafePublic from '../assets/images/jalansafe_public.png';
 import imgJalanSafeLapor from '../assets/images/jalansafe_report.png';
 import imgJalanSafeAdmin from '../assets/images/jalansafe_admin.png';
+
+// CalmClass Images
 import imgCalmClass from '../assets/images/calmclass.png';
 import imgCalmClassFocus from '../assets/images/calmclass_focus.png';
 import imgCalmClassTeacher from '../assets/images/calmclass_teacher.png';
 
+// Pilah.in Images
+import imgPilahinHero from '../assets/images/pilahin_hero.png';
+import imgPilahinSnapSort from '../assets/images/pilahin_snapsort.png';
+import imgPilahinSetor from '../assets/images/pilahin_setor.png';
+import imgPilahinToko from '../assets/images/pilahin_toko.png';
+
+// Puskesmas Images
+import imgPuskesmasIndex from '../assets/images/puskesmas_index.png';
+import imgPuskesmasTv from '../assets/images/puskesmas_tv.png';
+import imgPuskesmasLoket from '../assets/images/puskesmas_loket.png';
+import imgPuskesmasPetugas from '../assets/images/puskesmas_petugas.png';
+
+// DocuMind Images
+import imgDocuMindHero from '../assets/images/documind_hero.png';
+
+// NusaChain Images
+import imgNusaChainHero from '../assets/images/nusachain_hero.png';
+import imgNusaChainDesktop from '../assets/images/nusachain_desktop.png';
+import imgNusaChainLoop from '../assets/images/nusachain_loop.png';
+import imgNusaChainSpatial from '../assets/images/nusachain_spatial.png';
+import imgNusaChainWarga from '../assets/images/nusachain_warga.png';
+
 /* ──────────────────────────────────────────
-   PROJECTS — Pokémon Booster Pack Style
+   PROJECTS — Pokémon Booster Pack Experience
    Interactive "tear open" pack revealing 3D Cards
+   with Deck Carousel & Grid View modes
    ────────────────────────────────────────── */
 
 const projectsList = [
+  {
+    category: 'Web & PWA',
+    title: 'Pilah.in',
+    subtitle: 'Smart Waste Management & Circular Economy PWA',
+    image: imgPilahinHero,
+    description:
+      'A modern progressive web app connecting citizens and local recycling partners in a circular economy. Features AI waste classification, scheduled drop-off/pickup tickets, and direct e-wallet payouts.',
+    brief:
+      'Architected Pilah.in with a Fresh Eco-Tech design system, integrating SnapSort AI for instant waste identification, ticket-based field verification, circular store checkout, and SUS/NPS-validated user journeys.',
+    features: [
+      'SnapSort AI Waste Recognition & Classifier',
+      'Digital Drop-off & Pickup Tickets (PLH-XXXX)',
+      'Circular Market Store & E-Wallet Withdrawal (GoPay/DANA)',
+      'Mitra Field Verification & Real-Time Weighing Logs',
+      'High-Grade Usability Benchmarks (SUS & NPS Tested)'
+    ],
+    gallery: [
+      imgPilahinHero,
+      imgPilahinSnapSort,
+      imgPilahinSetor,
+      imgPilahinToko
+    ],
+    tools: ['React 18', 'Tailwind CSS v4', 'Vite', 'PWA', 'UX Research', 'Figma'],
+    demoLink: '#',
+    githubLink: '#',
+    colors: {
+      primary: '#059669',
+      gradient: 'linear-gradient(135deg, #047857 0%, #10B981 50%, #34D399 100%)',
+      accent50: '#ECFDF5',
+    },
+    rotation: -10,
+  },
+  {
+    category: 'Desktop & Next.js',
+    title: 'Antrean Puskesmas',
+    subtitle: 'Integrated Hybrid Healthcare Queue & TV Voice Calling System',
+    image: imgPuskesmasIndex,
+    description:
+      'A cross-platform hybrid queue management solution built for primary healthcare centers (Puskesmas Prambontergayang) integrating multi-counter kiosks, caller dashboards, and dual-monitor TV waiting displays with automated Indonesian voice announcements.',
+    brief:
+      'Engineered an offline-first healthcare queuing ecosystem combining Next.js with an Electron desktop application. Supports automated multi-screen TV extension, synchronized calling counters across general, dental, and geriatric clinics, and thermal slip ticket generation.',
+    features: [
+      'Self-Service Kiosk & Multi-Poli Ticket Dispatch',
+      'Automated Dual-Display TV Room Screen (Auto-Extend)',
+      'Real-time Indonesian TTS Audio Voice Announcements',
+      'Doctor & Counter Operator Calling Dashboard',
+      'Resilient Offline-First Hybrid Electron Architecture'
+    ],
+    gallery: [
+      imgPuskesmasIndex,
+      imgPuskesmasTv,
+      imgPuskesmasLoket,
+      imgPuskesmasPetugas
+    ],
+    tools: ['Next.js', 'Electron', 'TypeScript', 'Tailwind CSS', 'Web Audio API', 'Node.js'],
+    demoLink: '#',
+    githubLink: '#',
+    colors: {
+      primary: '#0D9488',
+      gradient: 'linear-gradient(135deg, #0F766E 0%, #0D9488 50%, #14B8A6 100%)',
+      accent50: '#F0FDFA',
+    },
+    rotation: -6,
+  },
+  {
+    category: 'AI & Local RAG',
+    title: 'DocuMind',
+    subtitle: 'Local-First RAG & Document Knowledge Engine',
+    image: imgDocuMindHero,
+    description:
+      'An enterprise-grade, local-first Retrieval-Augmented Generation (RAG) platform delivering grounded question-answering over complex documents with verifiable source citations and strict anti-hallucination guardrails.',
+    brief:
+      'Architected an end-to-end local knowledge retrieval pipeline integrating ChromaDB vector storage with Google Gemini streaming inference. Employs recursive smart chunking with semantic overlap, similarity distance scoring, and page-level source references.',
+    features: [
+      'Multi-Format Document Ingestion (.PDF, .MD, .TXT)',
+      'Recursive Smart Chunking with Dynamic Overlap',
+      'Local Persistent ChromaDB Vector Store',
+      'Real-Time Streaming LLM Responses (Google Gemini)',
+      'Anti-Hallucination Guardrails & Grounded Citations'
+    ],
+    gallery: [
+      imgDocuMindHero
+    ],
+    tools: ['Python 3.12', 'ChromaDB', 'Google Gemini API', 'Streamlit', 'Docker', 'uv'],
+    demoLink: '#',
+    githubLink: '#',
+    colors: {
+      primary: '#7C3AED',
+      gradient: 'linear-gradient(135deg, #6D28D9 0%, #7C3AED 50%, #8B5CF6 100%)',
+      accent50: '#F5F3FF',
+    },
+    rotation: -2,
+  },
+  {
+    category: 'Product & UX Architecture',
+    title: 'NusaChain 2.0',
+    subtitle: 'Maritime Logistics Intelligence & Early Warning System',
+    image: imgNusaChainHero,
+    description:
+      'A maritime supply chain intelligence and commodity price transparency platform designed for remote 3T archipelago regions (tested for Pulau Alor, NTT), combining real-time AIS vessel tracking with offline-resilient citizen tools.',
+    brief:
+      'Conducted in-depth field problem analysis and formulated a production-ready UX blueprint connecting Pelindo AIS ship tracking, BMKG marine weather safety alerts, Bulog buffer stock thresholds, and an offline PWA & WhatsApp inquiry bot to prevent price speculation.',
+    features: [
+      'Real-Time AIS Maritime Vessel & Tol Laut Tracking',
+      'Predictive Buffer Stock Shortage Early Warning',
+      'Offline-First PWA & WhatsApp Price Transparency Bot',
+      'BMKG Marine Weather & Sea Wave Safety Sync',
+      'Comprehensive User Persona & Empathy-Driven UX Blueprint'
+    ],
+    gallery: [
+      imgNusaChainHero,
+      imgNusaChainDesktop,
+      imgNusaChainLoop,
+      imgNusaChainSpatial,
+      imgNusaChainWarga
+    ],
+    tools: ['Product Strategy', 'UX Blueprint', 'PWA Architecture', 'AIS Logistics', 'Figma'],
+    demoLink: '#',
+    githubLink: '#',
+    colors: {
+      primary: '#0284C7',
+      gradient: 'linear-gradient(135deg, #0369A1 0%, #0284C7 50%, #38BDF8 100%)',
+      accent50: '#F0F9FF',
+    },
+    rotation: 2,
+  },
   {
     category: 'Web Development',
     title: 'JalanSafe',
@@ -27,13 +192,15 @@ const projectsList = [
       'Geolocated damage reports',
       'Severity categorization',
       'Municipal routing',
+      'Interactive public and admin dashboards'
     ],
     gallery: [
+      imgJalanSafe,
       imgJalanSafePublic,
       imgJalanSafeLapor,
       imgJalanSafeAdmin
     ],
-    tools: ['PHP', 'Tailwind', 'UX Design', 'Figma'],
+    tools: ['PHP', 'Tailwind CSS', 'UX Design', 'Figma', 'MySQL'],
     demoLink: '#',
     githubLink: '#',
     colors: {
@@ -41,7 +208,7 @@ const projectsList = [
       gradient: 'linear-gradient(135deg, #3A4F9F 0%, #5A72BF 50%, #7B93D4 100%)',
       accent50: '#EAEDFA',
     },
-    rotation: -8,
+    rotation: 6,
   },
   {
     category: 'Full-Stack Web Dev',
@@ -56,7 +223,7 @@ const projectsList = [
       'Teacher Dashboard for Student Tracking & Analytics',
       'Real-Time Student Mood & Well-being Tracking',
       'Distraction-Free Focus Mode with Pomodoro Timer',
-      'Interactive Quizzing & SQLite Database Integration',
+      'Interactive Quizzing & SQLite Database Integration'
     ],
     gallery: [
       imgCalmClass,
@@ -64,38 +231,19 @@ const projectsList = [
       imgCalmClassTeacher,
     ],
     tools: ['PHP', 'SQLite', 'JavaScript', 'Tailwind CSS', 'REST API'],
-    demoLink: 'http://localhost/calmclass/',
+    demoLink: '#',
     githubLink: '#',
     colors: {
-      primary: '#10B981',
-      gradient: 'linear-gradient(135deg, #10B981 0%, #059669 50%, #047857 100%)',
-      accent50: '#ECFDF5',
+      primary: '#D97706',
+      gradient: 'linear-gradient(135deg, #B45309 0%, #D97706 50%, #F59E0B 100%)',
+      accent50: '#FEF3C7',
     },
-    rotation: 8,
+    rotation: 10,
   },
 ];
 
-const getTranslateX = (index, total, isMobile) => {
-  const offset = index - (total - 1) / 2;
-  if (isMobile) {
-    return `${offset * (total <= 2 ? 40 : 30)}%`;
-  }
-  return `${offset * (total <= 2 ? 100 : 90)}%`;
-};
-
-const getTranslateY = (index, total, isMobile) => {
-  if (total <= 2) {
-    return '0px';
-  }
-  const isMiddle = index > 0 && index < total - 1;
-  if (isMobile) {
-    return isMiddle ? '-40px' : '50px';
-  }
-  return isMiddle ? '-20px' : '20px';
-};
-
 // Reusable 3D Tilt Card Component
-const PokeCard = ({ project, isOpened, index, onClick, isMobile }) => {
+const PokeCard = ({ project, isOpened, index, activeIndex, onClick, isMobile, viewMode }) => {
   const cardRef = useRef(null);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
@@ -104,8 +252,8 @@ const PokeCard = ({ project, isOpened, index, onClick, isMobile }) => {
   const handleMouseMove = (e) => {
     if (!isOpened || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left; // x position within the element
-    const y = e.clientY - rect.top; // y position within the element
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
@@ -127,6 +275,63 @@ const PokeCard = ({ project, isOpened, index, onClick, isMobile }) => {
     if (isOpened) setIsHovering(true);
   };
 
+  // If in Grid view mode:
+  if (viewMode === 'grid') {
+    return (
+      <div
+        ref={cardRef}
+        role="button"
+        onClick={onClick}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onMouseEnter={handleMouseEnter}
+        className="w-full max-w-[340px] aspect-[2.5/3.6] rounded-2xl cursor-pointer transition-all duration-300 preserve-3d group relative hover:-translate-y-2"
+        style={{
+          boxShadow: isHovering ? `0 25px 50px ${project.colors.primary}40` : `0 15px 35px rgba(0,0,0,0.2)`,
+          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+        }}
+      >
+        <CardInner 
+          project={project} 
+          glare={glare} 
+          isHovering={isHovering} 
+          index={index} 
+          total={projectsList.length} 
+        />
+      </div>
+    );
+  }
+
+  // Carousel / Deck Fan calculations relative to activeIndex
+  const diff = index - activeIndex;
+  const isCenter = diff === 0;
+
+  // Deck transform geometry
+  let translateX = 0;
+  let translateY = 0;
+  let rotateZ = 0;
+  let scale = 1;
+  let zIndex = 30 - Math.abs(diff) * 5;
+  let opacity = 1;
+
+  if (isCenter) {
+    translateX = 0;
+    translateY = 0;
+    rotateZ = 0;
+    scale = isMobile ? 0.95 : 1.05;
+    zIndex = 50;
+  } else {
+    // Fan out symmetrically
+    const spacing = isMobile ? 65 : 180;
+    translateX = diff * spacing;
+    translateY = Math.abs(diff) * (isMobile ? 12 : 24);
+    rotateZ = diff * (isMobile ? 4 : 7);
+    scale = Math.max(0.7, 1 - Math.abs(diff) * (isMobile ? 0.12 : 0.08));
+    if (Math.abs(diff) > 2) {
+      opacity = 0.2;
+    }
+  }
+
   return (
     <div
       ref={cardRef}
@@ -135,90 +340,108 @@ const PokeCard = ({ project, isOpened, index, onClick, isMobile }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
-      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[320px] aspect-[2.5/3.5] rounded-2xl cursor-pointer transition-all duration-700 ease-out preserve-3d`}
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[290px] sm:w-[330px] aspect-[2.5/3.6] rounded-2xl cursor-pointer transition-all duration-700 ease-out preserve-3d"
       style={{
-        zIndex: isHovering ? 50 : 10 + index,
-        // When not opened, all cards are stacked and scaled down. 
-        // Once opened, they fan out.
+        zIndex: isHovering ? 60 : zIndex,
         transform: isOpened 
-          ? (isMobile
-              ? `translate(-50%, -50%) rotateZ(${project.rotation}deg) translateX(${getTranslateX(index, projectsList.length, true)}) translateY(${getTranslateY(index, projectsList.length, true)}) scale(0.75) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
-              : `translate(-50%, -50%) rotateZ(${project.rotation}deg) translateX(${getTranslateX(index, projectsList.length, false)}) translateY(${getTranslateY(index, projectsList.length, false)}) scale(1) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
-            )
+          ? `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px)) rotateZ(${rotateZ}deg) scale(${scale}) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
           : `translate(-50%, -10%) scale(0.6) translateY(150px) rotateZ(0deg)`,
-        opacity: isOpened ? 1 : 0,
-        boxShadow: isHovering ? `0 30px 60px ${project.colors.primary}50` : `0 20px 40px rgba(0,0,0,0.2)`,
+        opacity: isOpened ? opacity : 0,
+        pointerEvents: Math.abs(diff) > 2 ? 'none' : 'auto',
+        boxShadow: isHovering 
+          ? `0 30px 60px ${project.colors.primary}60` 
+          : isCenter 
+            ? `0 25px 50px rgba(0,0,0,0.35)` 
+            : `0 15px 30px rgba(0,0,0,0.2)`,
       }}
     >
+      <CardInner 
+        project={project} 
+        glare={glare} 
+        isHovering={isHovering} 
+        index={index} 
+        total={projectsList.length} 
+      />
+    </div>
+  );
+};
+
+// Sub-component for Card Visual Content
+const CardInner = ({ project, glare, isHovering, index, total }) => {
+  return (
+    <div 
+      className="w-full h-full rounded-2xl border-[6px] sm:border-8 border-white bg-white relative flex flex-col overflow-hidden"
+      style={{ transform: 'translateZ(1px)' }}
+    >
+      {/* Holographic Glare Effect */}
       <div 
-        className="w-full h-full rounded-2xl border-8 border-white bg-white relative flex flex-col"
-        style={{ transform: 'translateZ(1px)' }}
-      >
-        {/* Holographic Glare Effect */}
-        <div 
-          className="absolute inset-0 z-20 pointer-events-none transition-opacity duration-300"
-          style={{
-            background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%)`,
-            opacity: glare.opacity,
-            mixBlendMode: 'overlay',
-          }}
-        />
+        className="absolute inset-0 z-20 pointer-events-none transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 65%)`,
+          opacity: glare.opacity,
+          mixBlendMode: 'overlay',
+        }}
+      />
 
-        {/* Foil effect overlay */}
-        <div 
-          className="absolute inset-0 z-10 pointer-events-none opacity-40 mix-blend-color-dodge transition-opacity duration-300"
-          style={{
-            backgroundImage: `linear-gradient(125deg, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%)`,
-            backgroundPosition: `${glare.x}% ${glare.y}%`,
-            backgroundSize: '200% 200%',
-            opacity: isHovering ? 0.6 : 0
-          }}
-        />
+      {/* Foil effect overlay */}
+      <div 
+        className="absolute inset-0 z-10 pointer-events-none opacity-40 mix-blend-color-dodge transition-opacity duration-300"
+        style={{
+          backgroundImage: `linear-gradient(125deg, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%)`,
+          backgroundPosition: `${glare.x}% ${glare.y}%`,
+          backgroundSize: '200% 200%',
+          opacity: isHovering ? 0.65 : 0
+        }}
+      />
 
-        {/* Card Content Top Gradient */}
-        <div className="h-[45%] relative p-5 flex flex-col rounded-t-lg overflow-hidden" style={{ background: project.colors.gradient }}>
-          <div className="flex items-start justify-between relative z-10 mb-4">
-            <span className="font-body text-[10px] font-bold tracking-widest text-white uppercase bg-black/20 px-2.5 py-1 rounded-md">
-              {project.category}
-            </span>
-            <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
-            </div>
-          </div>
-          <h3 className="font-display text-3xl text-white tracking-wide relative z-10 leading-none pr-4">
-            {project.title}
-          </h3>
-          
-          {/* Card Image Floating Overlay - Removed overflow-hidden from parent to allow pop-out */}
-          <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[94%] aspect-video z-20 group-hover:scale-110 transition-transform duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-            <img 
-              src={project.image} 
-              alt={project.title} 
-              className="w-full h-full object-cover rounded-xl border-[2px] border-white/50"
-            />
+      {/* Card Content Top Gradient */}
+      <div className="h-[46%] relative p-4 sm:p-5 flex flex-col rounded-t-lg overflow-hidden shrink-0" style={{ background: project.colors.gradient }}>
+        <div className="flex items-start justify-between relative z-10 mb-2">
+          <span className="font-body text-[10px] font-bold tracking-widest text-white uppercase bg-black/25 px-2.5 py-1 rounded-md backdrop-blur-sm">
+            {project.category}
+          </span>
+          <div className="w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-inner">
+            <Sparkles className="w-3.5 h-3.5 text-white" />
           </div>
         </div>
+        <h3 className="font-display text-2xl sm:text-3xl text-white tracking-wide relative z-10 leading-tight pr-2">
+          {project.title}
+        </h3>
+        
+        {/* Card Image Floating Overlay */}
+        <div className="absolute -bottom-16 sm:-bottom-20 left-1/2 -translate-x-1/2 w-[92%] aspect-video z-20 transition-transform duration-500 shadow-[0_15px_35px_rgba(0,0,0,0.45)] group-hover:scale-105">
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            className="w-full h-full object-cover rounded-xl border-[2px] border-white/60 bg-gray-900"
+          />
+        </div>
+      </div>
 
-        {/* Card Content Bottom White */}
-        <div className="h-[55%] bg-white px-5 pb-5 pt-20 flex flex-col justify-between relative z-10 rounded-b-lg">
-          <p className="font-body text-xs text-[var(--color-text-secondary)] line-clamp-3 leading-relaxed">
-            {project.description}
-          </p>
-          
-          <div className="flex flex-wrap gap-1.5 mt-3">
-            {project.tools.slice(0, 3).map((tool, i) => (
-              <span key={i} className="font-body text-[9px] font-bold px-2 py-1 rounded bg-[var(--color-surface-muted)] text-[var(--color-text-primary)]">
-                {tool}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-            <span className="font-body text-[10px] font-bold text-gray-400">#00{index + 1}/00{projectsList.length}</span>
-            <span className="font-body text-xs font-bold text-[var(--color-royal)] flex items-center gap-1">
-              Tap to Expand <ArrowUpRight className="w-3 h-3" />
+      {/* Card Content Bottom White */}
+      <div className="h-[54%] bg-white px-4 sm:px-5 pb-4 pt-16 sm:pt-20 flex flex-col justify-between relative z-10 rounded-b-lg">
+        <p className="font-body text-xs text-[var(--color-text-secondary)] line-clamp-3 leading-relaxed">
+          {project.description}
+        </p>
+        
+        <div className="flex flex-wrap gap-1.5 mt-2">
+          {project.tools.slice(0, 3).map((tool, i) => (
+            <span key={i} className="font-body text-[9px] font-bold px-2 py-0.5 rounded bg-[var(--color-surface-muted)] text-[var(--color-text-primary)] border border-gray-100">
+              {tool}
             </span>
-          </div>
+          ))}
+          {project.tools.length > 3 && (
+            <span className="font-body text-[9px] font-bold px-1.5 py-0.5 rounded text-gray-400">
+              +{project.tools.length - 3}
+            </span>
+          )}
+        </div>
+
+        <div className="mt-3 pt-2.5 border-t border-gray-100 flex items-center justify-between">
+          <span className="font-body text-[10px] font-bold text-gray-400">#00{index + 1}/00{total}</span>
+          <span className="font-body text-xs font-bold text-[var(--color-royal)] flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+            Tap to Open <ArrowUpRight className="w-3.5 h-3.5" />
+          </span>
         </div>
       </div>
     </div>
@@ -231,129 +454,153 @@ const DetailModal = ({ project, onClose }) => {
   const c = project.colors;
   const images = project.gallery || [project.image];
 
+  // Esc key closes modal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') setCurrentImg((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+      if (e.key === 'ArrowRight') setCurrentImg((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [images.length, onClose]);
+
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-8"
       style={{ animation: 'projFadeIn 0.3s ease forwards' }}
     >
       {/* Backdrop */}
       <div
         className="absolute inset-0"
-        style={{ background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(8px)' }}
+        style={{ background: 'rgba(5, 10, 30, 0.75)', backdropFilter: 'blur(10px)' }}
         onClick={onClose}
       />
 
-      {/* Modal */}
+      {/* Modal Container */}
       <div
-        className="relative w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-[2rem] flex flex-col"
+        className="relative w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-[2rem] flex flex-col z-10"
         style={{
           background: '#FFFFFF',
-          boxShadow: `0 40px 100px rgba(0,0,0,0.4)`,
-          animation: 'projSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          boxShadow: `0 40px 100px rgba(0,0,0,0.5)`,
+          animation: 'projSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         }}
       >
         {/* Top Hero Section (Image & Basic Info) */}
         <div
-          className="relative w-full aspect-[16/9] sm:aspect-[21/9] flex items-center justify-center overflow-hidden shrink-0 group"
+          className="relative w-full aspect-[16/10] sm:aspect-[21/9] flex items-center justify-center overflow-hidden shrink-0 group"
           style={{ background: c.gradient }}
         >
           {/* Background Decor */}
-          <div className="absolute top-0 left-0 w-full h-full opacity-30 mix-blend-overlay pointer-events-none" 
-               style={{ backgroundImage: `radial-gradient(circle at 20% 30%, white 0%, transparent 70%)` }} />
+          <div 
+            className="absolute top-0 left-0 w-full h-full opacity-25 mix-blend-overlay pointer-events-none" 
+            style={{ backgroundImage: `radial-gradient(circle at 20% 30%, white 0%, transparent 70%)` }} 
+          />
           
-          {/* The Mockup - FULL WIDTH */}
-          <div className="relative z-10 w-full h-full p-4 sm:p-12 flex justify-center items-center">
-             <div className="w-full max-w-4xl h-full rounded-2xl overflow-hidden shadow-2xl bg-gray-900/40 backdrop-blur-sm border border-white/20 relative group/mockup">
-               <img 
-                 src={images[currentImg]} 
-                 alt={project.title} 
-                 className="w-full h-full object-contain transition-opacity duration-300 bg-gray-900" 
-               />
-               
-               {/* Gallery Controls */}
-               {images.length > 1 && (
-                 <>
-                   <button 
-                     onClick={(e) => { e.stopPropagation(); setCurrentImg((prev) => (prev > 0 ? prev - 1 : images.length - 1)); }}
-                     className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black text-white p-2 rounded-full opacity-0 group-hover/mockup:opacity-100 transition-opacity"
-                   >
-                     <ChevronLeft className="w-6 h-6" />
-                   </button>
-                   <button 
-                     onClick={(e) => { e.stopPropagation(); setCurrentImg((prev) => (prev < images.length - 1 ? prev + 1 : 0)); }}
-                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black text-white p-2 rounded-full opacity-0 group-hover/mockup:opacity-100 transition-opacity"
-                   >
-                     <ChevronRight className="w-6 h-6" />
-                   </button>
-                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                     {images.map((_, i) => (
-                       <button 
-                         key={i} 
-                         onClick={(e) => { e.stopPropagation(); setCurrentImg(i); }}
-                         className={`w-2 h-2 rounded-full transition-all shadow-md ${i === currentImg ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/80'}`}
-                       />
-                     ))}
-                   </div>
-                 </>
-               )}
-             </div>
+          {/* The Mockup / Screenshot Showcase */}
+          <div className="relative z-10 w-full h-full p-4 sm:p-8 md:p-12 flex justify-center items-center">
+            <div className="w-full max-w-4xl h-full rounded-2xl overflow-hidden shadow-2xl bg-gray-950/60 backdrop-blur-md border border-white/20 relative group/mockup flex items-center justify-center">
+              <img 
+                src={images[currentImg]} 
+                alt={project.title} 
+                className="w-full h-full object-contain transition-opacity duration-300" 
+              />
+              
+              {/* Gallery Controls */}
+              {images.length > 1 && (
+                <>
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); setCurrentImg((prev) => (prev > 0 ? prev - 1 : images.length - 1)); }}
+                    aria-label="Previous image"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white p-2.5 rounded-full opacity-80 sm:opacity-0 group-hover/mockup:opacity-100 transition-opacity backdrop-blur-sm cursor-pointer"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); setCurrentImg((prev) => (prev < images.length - 1 ? prev + 1 : 0)); }}
+                    aria-label="Next image"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white p-2.5 rounded-full opacity-80 sm:opacity-0 group-hover/mockup:opacity-100 transition-opacity backdrop-blur-sm cursor-pointer"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-md">
+                    {images.map((_, i) => (
+                      <button 
+                        key={i} 
+                        onClick={(e) => { e.stopPropagation(); setCurrentImg(i); }}
+                        className={`w-2 h-2 rounded-full transition-all cursor-pointer ${i === currentImg ? 'bg-white scale-125' : 'bg-white/40 hover:bg-white/70'}`}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
 
-          {/* Floating Title Overlay (Bottom Left) */}
-          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none z-20" />
-          <div className="absolute bottom-8 left-8 sm:bottom-12 sm:left-12 z-30">
-            <span className="inline-block font-body text-[10px] font-bold tracking-[0.3em] uppercase px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white mb-4 border border-white/20">
+          {/* Floating Title Overlay */}
+          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/85 via-black/45 to-transparent pointer-events-none z-20" />
+          <div className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 z-30 pr-16">
+            <span className="inline-block font-body text-[10px] font-bold tracking-[0.25em] uppercase px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white mb-2 sm:mb-3 border border-white/20">
               {project.category}
             </span>
-            <h3 className="font-display text-4xl sm:text-6xl md:text-7xl text-white tracking-wider leading-none">
+            <h3 className="font-display text-3xl sm:text-5xl md:text-6xl text-white tracking-wider leading-none">
               {project.title}
             </h3>
-            <p className="font-body text-sm sm:text-lg text-white/70 mt-4 max-w-xl">{project.subtitle}</p>
+            <p className="font-body text-xs sm:text-base text-white/80 mt-2 max-w-xl line-clamp-2 sm:line-clamp-none">
+              {project.subtitle}
+            </p>
           </div>
 
           {/* Close Button Inside Hero */}
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 w-12 h-12 rounded-full z-[100] flex items-center justify-center transition-all duration-300 hover:rotate-90 hover:scale-110 cursor-pointer text-white bg-black/20 backdrop-blur-md border border-white/30"
+            aria-label="Close modal"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full z-[100] flex items-center justify-center transition-all duration-300 hover:rotate-90 hover:scale-110 cursor-pointer text-white bg-black/40 backdrop-blur-md border border-white/30"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Bottom Content Section */}
-        <div className="p-8 sm:p-12 md:p-16 bg-white">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-20">
+        <div className="p-6 sm:p-10 md:p-14 bg-white">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-14">
             
             {/* Left Column: Description & Process */}
             <div className="lg:col-span-7">
-              <div className="mb-12">
-                <div className="flex items-center gap-2 mb-6">
+              <div className="mb-10">
+                <div className="flex items-center gap-2 mb-4">
                   <div className="w-1.5 h-6 rounded-full" style={{ background: c.primary }} />
-                  <h4 className="font-body text-xl font-bold text-[var(--color-text-primary)]">
+                  <h4 className="font-body text-lg sm:text-xl font-bold text-[var(--color-text-primary)]">
                     Abstract & Process
                   </h4>
                 </div>
-                <p className="font-body text-base sm:text-lg leading-relaxed text-[var(--color-text-secondary)] mb-6">
+                <p className="font-body text-sm sm:text-base leading-relaxed text-[var(--color-text-secondary)] mb-6">
                   {project.description}
                 </p>
-                <div className="p-8 rounded-3xl border border-gray-100" style={{ background: `${c.accent50}40` }}>
-                  <p className="font-body text-base leading-relaxed text-[var(--color-text-secondary)] italic">
+                <div className="p-6 rounded-2xl border border-gray-100" style={{ background: `${c.accent50}60` }}>
+                  <p className="font-body text-sm sm:text-base leading-relaxed text-[var(--color-text-secondary)] italic">
                     "{project.brief}"
                   </p>
                 </div>
               </div>
 
               <div>
-                <h4 className="font-body text-xl font-bold text-[var(--color-text-primary)] mb-8">
+                <h4 className="font-body text-lg sm:text-xl font-bold text-[var(--color-text-primary)] mb-6 flex items-center gap-2">
+                  <Layers className="w-5 h-5" style={{ color: c.primary }} />
                   Core Features
                 </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {project.features.map((feat, i) => (
-                    <div key={i} className="flex items-center gap-4 p-5 rounded-2xl border border-gray-50 bg-gray-50/50 hover:bg-white hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
-                      <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-lg" style={{ background: c.primary }}>
-                        <Sparkles className="w-5 h-5 text-white" />
+                    <div 
+                      key={i} 
+                      className="flex items-center gap-3.5 p-4 rounded-2xl border border-gray-100 bg-gray-50/60 hover:bg-white hover:shadow-lg hover:scale-[1.01] transition-all duration-200"
+                    >
+                      <div className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ background: c.primary }}>
+                        <Sparkles className="w-4 h-4 text-white" />
                       </div>
-                      <span className="font-body text-sm font-bold text-[var(--color-text-secondary)]">{feat}</span>
+                      <span className="font-body text-xs sm:text-sm font-semibold text-[var(--color-text-primary)]">
+                        {feat}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -361,16 +608,19 @@ const DetailModal = ({ project, onClose }) => {
             </div>
 
             {/* Right Column: Stack & Actions */}
-            <div className="lg:col-span-5 flex flex-col gap-12">
+            <div className="lg:col-span-5 flex flex-col justify-between gap-10">
               {/* Tech Stack */}
               <div>
-                <h4 className="font-body text-xl font-bold text-[var(--color-text-primary)] mb-8 flex items-center gap-2">
+                <h4 className="font-body text-lg sm:text-xl font-bold text-[var(--color-text-primary)] mb-6 flex items-center gap-2">
                   <Wrench className="w-5 h-5" style={{ color: c.primary }} />
                   Technology Stack
                 </h4>
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-wrap gap-2">
                   {project.tools.map((tool, i) => (
-                    <span key={i} className="font-body text-sm font-bold px-5 py-3 rounded-2xl border border-gray-200 text-[var(--color-text-secondary)] hover:border-[var(--color-royal)] hover:text-[var(--color-royal)] transition-colors">
+                    <span 
+                      key={i} 
+                      className="font-body text-xs sm:text-sm font-bold px-4 py-2 rounded-xl border border-gray-200 text-[var(--color-text-secondary)] hover:border-[var(--color-royal)] hover:text-[var(--color-royal)] transition-colors"
+                    >
                       {tool}
                     </span>
                   ))}
@@ -378,22 +628,22 @@ const DetailModal = ({ project, onClose }) => {
               </div>
 
               {/* Project Links */}
-              <div className="mt-auto pt-10 border-t border-gray-100">
-                <div className="flex flex-col sm:flex-row items-center gap-4">
+              <div className="pt-8 border-t border-gray-100">
+                <div className="flex flex-col sm:flex-row items-center gap-3.5">
                   <a
                     href={project.demoLink}
-                    className="w-full sm:flex-1 inline-flex items-center justify-center gap-3 font-body text-sm font-bold px-8 py-5 rounded-2xl transition-all duration-300 hover:scale-105"
-                    style={{ background: c.gradient, color: '#fff', boxShadow: `0 15px 30px ${c.primary}40` }}
+                    className="w-full sm:flex-1 inline-flex items-center justify-center gap-2.5 font-body text-sm font-bold px-6 py-4 rounded-xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+                    style={{ background: c.gradient, color: '#fff', boxShadow: `0 12px 24px ${c.primary}35` }}
                   >
-                    <ExternalLink className="w-5 h-5" />
+                    <ExternalLink className="w-4 h-4" />
                     Launch Project
                   </a>
                   <a
                     href={project.githubLink}
-                    className="w-full sm:flex-1 inline-flex items-center justify-center gap-3 font-body text-sm font-bold px-8 py-5 rounded-2xl border-2 transition-all duration-300 hover:bg-gray-50"
+                    className="w-full sm:flex-1 inline-flex items-center justify-center gap-2.5 font-body text-sm font-bold px-6 py-4 rounded-xl border-2 transition-all duration-300 hover:bg-gray-50 cursor-pointer"
                     style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-primary)' }}
                   >
-                    <Code className="w-5 h-5" />
+                    <Code className="w-4 h-4" />
                     View Source
                   </a>
                 </div>
@@ -407,26 +657,48 @@ const DetailModal = ({ project, onClose }) => {
   );
 };
 
-
 const Projects = () => {
   const [packState, setPackState] = useState('sealed'); // sealed, opening, opened
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [viewMode, setViewMode] = useState('deck'); // 'deck' or 'grid'
   const [detailProject, setDetailProject] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
-    handleResize(); // trigger on mount
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Keyboard navigation for card deck
+  useEffect(() => {
+    if (packState !== 'opened' || detailProject !== null) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        setActiveIndex((prev) => (prev > 0 ? prev - 1 : projectsList.length - 1));
+      } else if (e.key === 'ArrowRight') {
+        setActiveIndex((prev) => (prev < projectsList.length - 1 ? prev + 1 : 0));
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [packState, detailProject]);
+
   const handleOpenPack = () => {
     if (packState !== 'sealed') return;
     setPackState('opening');
-    // Sequence the opening animation
     setTimeout(() => {
       setPackState('opened');
-    }, 1200); // 1.2s total animation time before fully opened
+    }, 1100);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev > 0 ? prev - 1 : projectsList.length - 1));
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev < projectsList.length - 1 ? prev + 1 : 0));
   };
 
   return (
@@ -436,106 +708,212 @@ const Projects = () => {
         className="section-fade py-20 sm:py-32 overflow-hidden relative flex flex-col items-center"
         style={{ background: 'var(--color-royal)', minHeight: '100vh' }}
       >
+        {/* Background Ambient Glow */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-400/10 rounded-full blur-[120px] pointer-events-none" />
+
         {/* Header Texts */}
-        <div className="max-w-[1400px] w-full mx-auto px-6 sm:px-10 lg:px-16 relative z-50 pointer-events-none mb-16 text-center">
+        <div className="max-w-[1400px] w-full mx-auto px-6 sm:px-10 lg:px-16 relative z-30 mb-8 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-[var(--color-royal-100)] font-body text-xs font-bold tracking-widest uppercase mb-4 border border-white/15 backdrop-blur-sm">
+            <Sparkles className="w-3.5 h-3.5" /> Curated Works
+          </div>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl tracking-wider text-white">
             PROJECT SHOWCASE
           </h2>
-          <p className="mt-4 font-body text-white/80 max-w-xl mx-auto">
+          <p className="mt-4 font-body text-white/80 max-w-xl mx-auto text-sm sm:text-base">
             {packState === 'sealed' 
-              ? "Tarik atau klik Booster Pack di bawah ini untuk melihat portofolio saya."
-              : "Pilih salah satu kartu proyek untuk melihat detail lengkapnya."}
+              ? "Klik Booster Pack di bawah ini untuk membuka koleksi 6 proyek pilihan saya."
+              : "Jelajahi kartu 3D di bawah ini atau ganti mode tampilan untuk melihat seluruh proyek."}
           </p>
-        </div>
 
-        {/* The 3D Scene Container */}
-        <div className="relative w-full max-w-[1200px] mx-auto h-[600px] sm:h-[700px] perspective-1000 flex items-center justify-center mt-8 sm:mt-12">
-
-          {/* Cards (rendered behind the pack when sealed, but pop out when opening) */}
-          <div className="absolute inset-0">
-            {projectsList.map((project, idx) => (
-              <PokeCard 
-                key={idx} 
-                project={project} 
-                index={idx} 
-                isOpened={packState === 'opened' || packState === 'opening'}
-                isMobile={isMobile}
-                onClick={() => {
-                  if (packState === 'opened') setDetailProject(idx);
-                }}
-              />
-            ))}
-          </div>
-
-          {/* The Booster Pack */}
-          {packState !== 'opened' && (
-            <div 
-              role="button"
-              onClick={handleOpenPack}
-              className={`relative z-40 w-[300px] sm:w-[340px] aspect-[2/3.2] cursor-pointer transition-all ${packState === 'opening' ? 'pointer-events-none' : 'hover:scale-105 hover:-translate-y-2'}`}
-              style={{
-                animation: packState === 'opening' ? 'packShake 0.4s ease-in-out forwards' : 'float 6s ease-in-out infinite'
-              }}
-            >
-              {/* Booster Pack Shadow & Glow */}
-              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-black/40 blur-2xl rounded-[100%]" />
-              <div className="absolute inset-0 bg-[var(--color-royal-light)] blur-[80px] rounded-[30px] opacity-20 -z-10" />
-
-              {/* Top Flap (tears off) */}
-              <div 
-                className="absolute top-0 left-0 w-full h-[25%] bg-[var(--color-royal-dark)] rounded-t-xl overflow-hidden shadow-inner flex flex-col justify-end border-t border-l border-r border-white/10"
-                style={{
-                  transformOrigin: 'bottom',
-                  transform: packState === 'opening' ? 'translateY(-100px) rotateX(20deg)' : 'none',
-                  opacity: packState === 'opening' ? 0 : 1,
-                  transition: 'all 0.6s cubic-bezier(0.8, 0, 0.2, 1) 0.3s', // delayed tear
-                }}
-              >
-                {/* Flap ridges */}
-                <div className="absolute top-0 left-0 w-full flex justify-between px-2 py-1">
-                  {[...Array(15)].map((_, i) => (
-                    <div key={i} className="w-1.5 h-4 bg-white/20 rounded-full" />
-                  ))}
-                </div>
-                <div className="p-4 text-center pb-2">
-                  <div className="w-16 h-1 mx-auto bg-white/30 rounded-full mb-2" />
-                  <span className="font-display text-white/50 text-xs tracking-widest">TEAR HERE</span>
-                </div>
-              </div>
-
-              {/* Main Pack Body */}
-              <div 
-                className="absolute bottom-0 left-0 w-full h-[75%] rounded-b-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center p-8 text-center border border-white/10"
-                style={{
-                  background: 'linear-gradient(135deg, var(--color-royal-dark) 0%, #1a2552 100%)',
-                  transform: packState === 'opening' ? 'translateY(100px) scale(0.95)' : 'none',
-                  opacity: packState === 'opening' ? 0 : 1,
-                  transition: 'all 0.8s cubic-bezier(0.8, 0, 0.2, 1) 0.4s',
-                }}
-              >
-                {/* Shiny Foil Glare */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/30 to-white/0 -rotate-45 translate-x-[-100%] animate-[glare_4s_infinite]" />
-                
-                <Sparkles className="w-12 h-12 text-white/90 mb-4" />
-                <h3 className="font-display text-3xl text-white tracking-widest leading-none mb-2">
-                  PORTFOLIO 
-                  <br/> 
-                  <span className="text-[var(--color-royal-100)]">EDITION</span>
-                </h3>
-                <p className="font-body text-[10px] text-white/60 tracking-widest uppercase mt-4 border border-white/20 px-4 py-2 rounded-full backdrop-blur-sm">
-                  Click to Open
-                </p>
-                <div className="absolute bottom-4 font-body text-[9px] text-white/40 tracking-widest">
-                  CONTAINS {projectsList.length} RARE PROJECTS
-                </div>
+          {/* View Mode Switcher (Visible after opening) */}
+          {packState === 'opened' && (
+            <div className="mt-6 flex items-center justify-center gap-3">
+              <div className="bg-black/25 backdrop-blur-md p-1.5 rounded-2xl border border-white/15 flex items-center gap-1">
+                <button
+                  onClick={() => setViewMode('deck')}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl font-body text-xs font-bold transition-all cursor-pointer ${
+                    viewMode === 'deck' 
+                      ? 'bg-white text-[var(--color-royal)] shadow-lg' 
+                      : 'text-white/70 hover:text-white'
+                  }`}
+                >
+                  <Disc3 className="w-3.5 h-3.5" />
+                  3D Deck Fan
+                </button>
+                <button
+                  onClick={() => setViewMode('grid')}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl font-body text-xs font-bold transition-all cursor-pointer ${
+                    viewMode === 'grid' 
+                      ? 'bg-white text-[var(--color-royal)] shadow-lg' 
+                      : 'text-white/70 hover:text-white'
+                  }`}
+                >
+                  <LayoutGrid className="w-3.5 h-3.5" />
+                  Grid View ({projectsList.length})
+                </button>
               </div>
             </div>
           )}
-
         </div>
+
+        {/* ── MODE 1: Booster Pack / 3D Deck Fan Scene ── */}
+        {viewMode === 'deck' && (
+          <div className="relative w-full max-w-[1300px] mx-auto h-[620px] sm:h-[720px] perspective-1000 flex items-center justify-center mt-2 sm:mt-6">
+            
+            {/* The 3D Cards */}
+            <div className="absolute inset-0">
+              {projectsList.map((project, idx) => (
+                <PokeCard 
+                  key={idx} 
+                  project={project} 
+                  index={idx} 
+                  activeIndex={activeIndex}
+                  isOpened={packState === 'opened' || packState === 'opening'}
+                  isMobile={isMobile}
+                  viewMode="deck"
+                  onClick={() => {
+                    if (packState !== 'opened') return;
+                    if (idx === activeIndex) {
+                      setDetailProject(idx);
+                    } else {
+                      setActiveIndex(idx);
+                    }
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Left & Right Deck Navigation Controls (When Opened) */}
+            {packState === 'opened' && (
+              <>
+                <button
+                  onClick={handlePrev}
+                  aria-label="Previous Project"
+                  className="absolute left-4 sm:left-12 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white/15 hover:bg-white text-white hover:text-[var(--color-royal)] backdrop-blur-md border border-white/25 flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer shadow-xl"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  aria-label="Next Project"
+                  className="absolute right-4 sm:right-12 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white/15 hover:bg-white text-white hover:text-[var(--color-royal)] backdrop-blur-md border border-white/25 flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer shadow-xl"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+
+                {/* Deck Card Indicators at the bottom */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-black/30 backdrop-blur-md px-4 py-2 rounded-full border border-white/15">
+                  {projectsList.map((p, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveIndex(idx)}
+                      aria-label={`Jump to ${p.title}`}
+                      className={`transition-all duration-300 cursor-pointer rounded-full ${
+                        idx === activeIndex
+                          ? 'w-8 h-2.5 bg-white shadow-md'
+                          : 'w-2.5 h-2.5 bg-white/40 hover:bg-white/70'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {/* The Booster Pack (When Sealed or Opening) */}
+            {packState !== 'opened' && (
+              <div 
+                role="button"
+                onClick={handleOpenPack}
+                className={`relative z-40 w-[290px] sm:w-[340px] aspect-[2/3.2] cursor-pointer transition-all ${
+                  packState === 'opening' ? 'pointer-events-none' : 'hover:scale-105 hover:-translate-y-2'
+                }`}
+                style={{
+                  animation: packState === 'opening' ? 'packShake 0.4s ease-in-out forwards' : 'float 6s ease-in-out infinite'
+                }}
+              >
+                {/* Booster Pack Shadow & Glow */}
+                <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-black/50 blur-2xl rounded-[100%]" />
+                <div className="absolute inset-0 bg-blue-300/30 blur-[80px] rounded-[30px] opacity-30 -z-10" />
+
+                {/* Top Flap (tears off) */}
+                <div 
+                  className="absolute top-0 left-0 w-full h-[25%] bg-[var(--color-royal-dark)] rounded-t-2xl overflow-hidden shadow-inner flex flex-col justify-end border-t border-l border-r border-white/20"
+                  style={{
+                    transformOrigin: 'bottom',
+                    transform: packState === 'opening' ? 'translateY(-100px) rotateX(25deg)' : 'none',
+                    opacity: packState === 'opening' ? 0 : 1,
+                    transition: 'all 0.6s cubic-bezier(0.8, 0, 0.2, 1) 0.25s',
+                  }}
+                >
+                  {/* Flap ridges */}
+                  <div className="absolute top-0 left-0 w-full flex justify-between px-2 py-1">
+                    {[...Array(15)].map((_, i) => (
+                      <div key={i} className="w-1.5 h-4 bg-white/20 rounded-full" />
+                    ))}
+                  </div>
+                  <div className="p-4 text-center pb-2">
+                    <div className="w-16 h-1 mx-auto bg-white/40 rounded-full mb-2" />
+                    <span className="font-display text-white/70 text-xs tracking-widest">TEAR HERE</span>
+                  </div>
+                </div>
+
+                {/* Main Pack Body */}
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-[75%] rounded-b-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)] flex flex-col items-center justify-center p-8 text-center border border-white/15"
+                  style={{
+                    background: 'linear-gradient(135deg, var(--color-royal-dark) 0%, #162047 100%)',
+                    transform: packState === 'opening' ? 'translateY(100px) scale(0.95)' : 'none',
+                    opacity: packState === 'opening' ? 0 : 1,
+                    transition: 'all 0.8s cubic-bezier(0.8, 0, 0.2, 1) 0.35s',
+                  }}
+                >
+                  {/* Shiny Foil Glare */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/35 to-white/0 -rotate-45 translate-x-[-100%] animate-[glare_3.5s_infinite]" />
+                  
+                  <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center mb-4 border border-white/20 shadow-lg">
+                    <Sparkles className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="font-display text-3xl sm:text-4xl text-white tracking-widest leading-none mb-2">
+                    PORTFOLIO 
+                    <br/> 
+                    <span className="text-[var(--color-royal-100)]">EDITION</span>
+                  </h3>
+                  <p className="font-body text-[11px] font-bold text-white tracking-widest uppercase mt-4 border border-white/30 px-5 py-2 rounded-full backdrop-blur-sm bg-white/10 hover:bg-white hover:text-[var(--color-royal)] transition-colors">
+                    Click to Open Pack
+                  </p>
+                  <div className="absolute bottom-4 font-body text-[10px] text-white/50 tracking-widest font-semibold">
+                    CONTAINS {projectsList.length} RARE PROJECTS
+                  </div>
+                </div>
+              </div>
+            )}
+
+          </div>
+        )}
+
+        {/* ── MODE 2: Full Grid Showcase (All 6 Cards at once) ── */}
+        {viewMode === 'grid' && packState === 'opened' && (
+          <div className="w-full max-w-[1300px] mx-auto px-6 sm:px-10 lg:px-16 mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+              {projectsList.map((project, idx) => (
+                <PokeCard 
+                  key={idx} 
+                  project={project} 
+                  index={idx} 
+                  activeIndex={idx}
+                  isOpened={true}
+                  isMobile={isMobile}
+                  viewMode="grid"
+                  onClick={() => setDetailProject(idx)}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
       </section>
 
-      {/* ═══════ Detail Modal (Existing Design) ═══════ */}
+      {/* ═══════ Detail Modal ═══════ */}
       {detailProject !== null && (
         <DetailModal 
           project={projectsList[detailProject]} 
@@ -546,21 +924,21 @@ const Projects = () => {
       <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-15px); }
+          50% { transform: translateY(-12px); }
         }
         @keyframes glare {
-          0% { transform: translateX(-100%) rotate(-45deg); opacity: 0; }
-          20% { transform: translateX(200%) rotate(-45deg); opacity: 0.5; }
+          0% { transform: translateX(-120%) rotate(-45deg); opacity: 0; }
+          25% { transform: translateX(200%) rotate(-45deg); opacity: 0.5; }
           100% { transform: translateX(200%) rotate(-45deg); opacity: 0; }
         }
         @keyframes packShake {
           0%, 100% { transform: translateX(0) scale(1); }
-          25% { transform: translateX(-10px) scale(0.98); }
-          50% { transform: translateX(10px) scale(1.02); }
-          75% { transform: translateX(-10px) scale(0.98); }
+          25% { transform: translateX(-8px) scale(0.98); }
+          50% { transform: translateX(8px) scale(1.02); }
+          75% { transform: translateX(-8px) scale(0.98); }
         }
         .perspective-1000 {
-          perspective: 1000px;
+          perspective: 1200px;
         }
         .preserve-3d {
           transform-style: preserve-3d;

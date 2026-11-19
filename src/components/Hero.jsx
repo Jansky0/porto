@@ -7,14 +7,14 @@ import React from 'react';
 
 const SKILLS_MARQUEE = [
   'AI RESEARCH',
-  'UX DESIGN',
-  'WEB DEVELOPMENT',
+  'LOCAL RAG',
+  'NEXT.JS',
   'REACT',
   'TAILWIND CSS',
-  'PHP',
-  'UI DESIGN',
-  'TECH RESEARCH',
-  'BRANDING',
+  'UX DESIGN',
+  'ELECTRON',
+  'FULL-STACK DEV',
+  'SYSTEM DESIGN',
   'PROTOTYPING',
 ];
 

@@ -7,11 +7,11 @@ import { Sparkles } from 'lucide-react';
    ────────────────────────────────────────── */
 
 const topTrackSkills = [
-  "REACT.JS", "TAILWIND CSS", "UX DESIGN", "FIGMA", "RESPONSIVE UI", "JAVASCRIPT"
+  "REACT 18", "NEXT.JS", "TAILWIND CSS V4", "UX DESIGN", "ELECTRON", "FIGMA", "RESPONSIVE UI", "TYPESCRIPT"
 ];
 
 const bottomTrackSkills = [
-  "AI RESEARCH", "MACHINE LEARNING", "PYTHON", "PROMPT ENGINEERING", "DATA ANALYSIS", "BACKEND"
+  "AI RESEARCH", "LOCAL RAG", "PYTHON 3.12", "CHROMADB", "GEMINI API", "STREAMLIT", "OFFLINE-FIRST", "DOCKER"
 ];
 
 // Helper to duplicate array for seamless infinite marquee loop
